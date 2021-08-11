@@ -35,7 +35,6 @@
     </v-main>
   </v-app>
 </template>
-
 <script>
 import { mdiGithub } from "@mdi/js";
 export default {
@@ -65,3 +64,7 @@ export default {
   },
 };
 </script>
+
+<style>
+@import url("./utils/prism.css");
+</style>
