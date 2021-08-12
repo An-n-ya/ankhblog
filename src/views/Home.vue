@@ -2,10 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="3" class="pl-0 pt-4 pr-2">
-        <transition
-          appear
-          enter-active-class="animate__animated animate__fadeIn"
-        >
+        <transition appear name="scale">
           <Author :authorData="authorData"></Author>
         </transition>
       </v-col>

@@ -1,15 +1,11 @@
 <template>
   <div>
     <!-- 文章列表模块，若当前route指向‘/’，则使用该模块 -->
-
+    <!-- enter-active-class="animate__animated animate__fadeIn" -->
+    <!-- :duration="{ enter: (i + 1) * 500, leave: (i + 2) * 500 }" -->
     <template class="articleList" v-if="this.$route.path === '/'">
       <template v-for="(item, i) in articleList">
-        <transition
-          appear
-          :key="i"
-          enter-active-class="animate__animated animate__fadeIn"
-          :duration="{ enter: (i + 1) * 500, leave: (i + 2) * 500 }"
-        >
+        <transition appear :key="i" name="scale">
           <v-hover v-slot="{ hover }" :key="i">
             <v-card
               v-ripple="false"
@@ -29,9 +25,11 @@
 
     <!-- 若route不指向’/‘，则进入单页文章 -->
     <template class="singleArticle" v-else>
-      <v-card class="rounded-lg pa-4 mb-4" flat>
-        <div v-html="articleList[currentArticleId].html"></div>
-      </v-card>
+      <transition appear name="scale">
+        <v-card class="rounded-lg pa-4 mb-4" flat>
+          <div v-html="articleList[currentArticleId].html"></div>
+        </v-card>
+      </transition>
     </template>
   </div>
 </template>
