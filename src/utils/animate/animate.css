@@ -1,0 +1,7 @@
+.scale-enter-active{
+    transition: all .5s;
+}
+.scale-enter{
+    transform: scale(.3);
+    opacity: 0.3;
+}

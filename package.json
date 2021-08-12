@@ -12,6 +12,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.0",
     "@fortawesome/vue-fontawesome": "^2.0.0",
     "@mdi/js": "^5.9.55",
+    "animate.css": "^4.1.1",
     "core-js": "^3.6.5",
     "css-loader": "^3.6.0",
     "front-matter": "^4.0.2",

@@ -42,6 +42,10 @@ const routes = [
     redirect: '/'
   },
   {
+    path: "/post/:article",
+    component: Home
+  },
+  {
     path: '*',
     name: '404',
     component: page404
