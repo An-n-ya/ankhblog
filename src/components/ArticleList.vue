@@ -88,7 +88,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 @import url(../utils/animate/animate.css);
 :root {
   --animate-duration: 500ms;
@@ -106,6 +106,7 @@ code {
   float: left;
   text-align: center;
   width: 5%;
+  min-width: 30px;
   font-size: 0.9em;
   line-height: 1.2em;
   padding: 1.5em 0em;
@@ -114,7 +115,7 @@ code {
 }
 pre {
   float: right;
-  width: 95%;
+  width: 90%;
 }
 .line-numbers-mode {
   overflow: hidden;
