@@ -28,6 +28,21 @@
       <transition appear name="scale">
         <v-card class="rounded-lg pa-4 mb-4" flat>
           <div v-html="articleList[currentArticleId].html"></div>
+          <template
+            v-for="(tag, index) in articleList[currentArticleId].attributes
+              .tags"
+          >
+            <v-chip
+              class="ma-2"
+              color="primary"
+              label
+              text-color="white"
+              :key="index"
+            >
+              <v-icon left> fas fa-tag </v-icon>
+              {{ tag }}
+            </v-chip></template
+          >
         </v-card>
       </transition>
     </template>
