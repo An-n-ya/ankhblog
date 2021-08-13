@@ -27,7 +27,7 @@ module.exports = {
               render: (tokens, idx) => {
                 if (tokens[idx].nesting === 1) {
                   if (/wrapped$/.test(tokens[idx].info.trim())) {
-                    return `<div class="rounded-lg pa-2 wrapped">\n<div style="border-bottom:1px solid rgba(50,50,50,0.3);color:#555">${tokens[idx].info.trim().replace(' wrapped', '')}<i class="fas fa-chevron-left"></i></div>\n<div>\n`
+                    return `<div class="rounded-lg pa-2 wrapped">\n<div style="border-bottom:1px solid rgba(50,50,50,0.3);color:#white">${tokens[idx].info.trim().replace(' wrapped', '')}<i class="fas fa-chevron-left"></i></div>\n<div>\n`
                   }
                   return `<div readonly class="rounded-lg pa-2 ma-2 ${tokens[idx].info.trim()}">\n<div style="border-bottom:1px solid rgba(50,50,50,0.3);color:white" class="d-flex justify-space-between">${tokens[idx].info.trim()}<i class="fas fa-chevron-down mr-2"></i></div>\n<div>\n`;
                 } else {
