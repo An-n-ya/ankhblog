@@ -22,8 +22,21 @@ module.exports = {
             .use(require('markdown-it-table-of-contents'))
             .use(require('markdown-it-footnote'))
             .use(require('markdown-it-imsize'))
-            .use(require('markdown-it-container'))
+            .use(require('markdown-it-container'), 'classname', {
+              validate: name => name.trim().length,
+              render: (tokens, idx) => {
+                if (tokens[idx].nesting === 1) {
+                  if (/wrapped$/.test(tokens[idx].info.trim())) {
+                    return `<div class="rounded-lg pa-2 wrapped">\n<div style="border-bottom:1px solid rgba(50,50,50,0.3);color:#555">${tokens[idx].info.trim().replace(' wrapped', '')}<i class="fas fa-chevron-left"></i></div>\n<div>\n`
+                  }
+                  return `<div readonly class="rounded-lg pa-2 ${tokens[idx].info.trim()}">\n<div style="border-bottom:1px solid rgba(50,50,50,0.3);color:#555" class="d-flex justify-space-between">${tokens[idx].info.trim()}<i class="fas fa-chevron-down mr-2"></i></div>\n<div>\n`;
+                } else {
+                  return '</div></div>\n';
+                }
+              }
+            })
             .use(require('markdown-it-emoji'))
+            .use(require('markdown-it-task-lists'))
             .use(require('./src/utils/md/component'))
             .use(require('./src/utils/md/preWrapper'))
             .use(require('./src/utils/md/lineNumbers')),
@@ -36,7 +49,8 @@ module.exports = {
         $: 'jquery',
         jQuery: 'jquery'
       })
-    ]
+    ],
+    devtool: 'source-map',
   }
 
 }

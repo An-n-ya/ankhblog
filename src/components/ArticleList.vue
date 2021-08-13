@@ -47,6 +47,9 @@ export default {
   created() {
     this.getArticle();
   },
+  mounted() {
+    this.getDOM();
+  },
   computed: {},
   methods: {
     animateClass(i) {
@@ -82,6 +85,11 @@ export default {
         return item2.attributes.addTime - item1.attributes.addTime;
       });
     },
+    getDOM() {
+      var dom = $("p");
+
+      console.log(dom);
+    },
   },
 };
 </script>
@@ -93,6 +101,10 @@ export default {
 }
 h1 {
   margin-bottom: 10px;
+}
+img {
+  width: 100%;
+  border-radius: 8px;
 }
 code {
   background-color: rgba(0, 0, 0, 0) !important;
