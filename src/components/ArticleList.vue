@@ -63,7 +63,7 @@ export default {
     this.getArticle();
   },
   mounted() {
-    this.getDOM();
+    this.refineDOM();
   },
   computed: {},
   methods: {
@@ -100,10 +100,14 @@ export default {
         return item2.attributes.addTime - item1.attributes.addTime;
       });
     },
-    getDOM() {
-      var dom = $("p");
-
-      console.log(dom);
+    refineDOM() {
+      var dom = $("a[href]");
+      var dom2 = $("div.wrapped div:nth-child(2)");
+      $("body").on("click", "i.pullDown", function () {
+        $("body i.pullDown").toggleClass("fa-chevron-down");
+        $("body i.pullDown").toggleClass("fa-chevron-left");
+        $("div.wrapped div:nth-child(2)").slideToggle();
+      });
     },
   },
 };
