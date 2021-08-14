@@ -11,6 +11,7 @@
               v-ripple="false"
               :key="i"
               :elevation="hover ? 3 : 0"
+              :id="`aticlePost${i}`"
               class="rounded-lg pa-4 mb-4"
               :to="routeTo(item.attributes, i)"
               flat
@@ -26,7 +27,11 @@
     <!-- 若route不指向’/‘，则进入单页文章 -->
     <template class="singleArticle" v-else>
       <transition appear name="scale">
-        <v-card class="rounded-lg pa-4 mb-4" flat>
+        <v-card
+          class="rounded-lg pa-4 mb-4"
+          :id="`articlePost${currentArticleId}`"
+          flat
+        >
           <div v-html="articleList[currentArticleId].html"></div>
           <template
             v-for="(tag, index) in articleList[currentArticleId].attributes
@@ -56,7 +61,8 @@ export default {
     return {
       articleList: [],
       mdList: [],
-      currentArticleId: "",
+
+      currentArticleId: "", //选中文章的id
     };
   },
   created() {
@@ -74,7 +80,7 @@ export default {
       return `animate__animated animate__bounce animate__delay-${i * 0.5}s`;
     },
     routeTo(attr, index) {
-      console.log(index);
+      this.$store.commit("setArticle", index);
       this.currentArticleId = index;
       return `/post/${attr.title}`;
     },
@@ -101,8 +107,6 @@ export default {
       });
     },
     refineDOM() {
-      var dom = $("a[href]");
-      var dom2 = $("div.wrapped div:nth-child(2)");
       $("body").on("click", "i.pullDown", function () {
         $("body i.pullDown").toggleClass("fa-chevron-down");
         $("body i.pullDown").toggleClass("fa-chevron-left");

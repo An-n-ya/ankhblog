@@ -18,7 +18,7 @@ module.exports = {
           markdownIt: markdownIt({
             html: true, linkify: true
           }).use(markdownItPrism, { plugins: ['match-braces', 'show-language'] })
-            .use(require('markdown-it-anchor'), { level: 3, permalink: true, permalinkClass: 'header-anchor', permalinkSymbol: '§', permalinkBefore: true })
+            .use(require('markdown-it-anchor'), { level: 2, permalink: true, permalinkClass: 'header-anchor' })
             .use(require('markdown-it-table-of-contents'))
             .use(require('markdown-it-footnote'))
             .use(require('markdown-it-imsize'))

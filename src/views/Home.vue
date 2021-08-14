@@ -3,7 +3,11 @@
     <v-row>
       <v-col cols="3" class="pl-0 pt-4 pr-2">
         <transition appear name="scale">
-          <Author :authorData="authorData"></Author>
+          <Author
+            v-if="this.$route.path === '/'"
+            :authorData="authorData"
+          ></Author>
+          <Catalog v-else></Catalog>
         </transition>
       </v-col>
 
@@ -17,12 +21,14 @@
 <script>
 import Author from "../components/Author.vue";
 import ArticleList from "../components/ArticleList.vue";
+import Catalog from "../components/Cate.vue";
 export default {
   name: "Home",
 
   components: {
     Author,
     ArticleList,
+    Catalog,
   },
   watch: {
     $route(to, from) {
