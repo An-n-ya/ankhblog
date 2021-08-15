@@ -1,6 +1,7 @@
 const Mode = require('frontmatter-markdown-loader/mode')
 const markdownIt = require('markdown-it')
 const markdownItPrism = require('markdown-it-prism')
+const anchor = require('markdown-it-anchor')
 const webpack = require('webpack')
 module.exports = {
   transpileDependencies: [
@@ -18,8 +19,8 @@ module.exports = {
           markdownIt: markdownIt({
             html: true, linkify: true
           }).use(markdownItPrism, { plugins: ['match-braces', 'show-language'] })
-            .use(require('markdown-it-anchor'), { level: 2, permalink: true, permalinkClass: 'header-anchor' })
-            .use(require('markdown-it-table-of-contents'))
+            .use(anchor, { level: 2, permalink: anchor.permalink.headerLink(), permalinkClass: 'header-anchor' })
+            .use(require('markdown-it-table-of-contents'), { "includeLevel": [2, 3, 4, 5, 6] })
             .use(require('markdown-it-footnote'))
             .use(require('markdown-it-imsize'))
             .use(require('markdown-it-container'), 'classname', {

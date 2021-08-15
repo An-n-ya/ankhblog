@@ -1,14 +1,36 @@
 <template>
-  <v-card class="rounded-lg" flat
-    ><template v-for="(value, key, index) in cateMap">
-      <div :key="index" v-if="value.length > 0">
-        <template v-for="(title, j) of value"
-          ><a :href="`#${title}`" :key="key + j">{{ key }}:{{ title }}</a
-          ><br :key="key + j"
-        /></template>
-      </div>
-      <br :key="index" /></template
-  ></v-card>
+  <div>
+    <v-card id="cate" class="rounded-lg mx-auto" flat>
+      <v-list dense flat>
+        <v-subheader>目录</v-subheader>
+        <v-list-group
+          v-for="item in cate"
+          :key="item.title"
+          v-model="item.active"
+          color="primary"
+          no-action
+        >
+          <template v-slot:activator>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.title"></v-list-item-title>
+            </v-list-item-content>
+            <v-list-item-avatar></v-list-item-avatar>
+          </template>
+
+          <v-list-item
+            v-for="child in item.child"
+            :key="child.title"
+            :href="child.href"
+          >
+            <v-list-item-content>
+              <v-list-item-title
+                v-text="child.title"
+              ></v-list-item-title> </v-list-item-content
+          ></v-list-item>
+        </v-list-group>
+      </v-list>
+    </v-card>
+  </div>
 </template>
 
 
@@ -17,13 +39,8 @@ export default {
   data() {
     return {
       cateList: "",
-      cateMap: {
-        h2: [],
-        h3: [],
-        h4: [],
-        h5: [],
-        h6: [],
-      },
+      cateMap: "",
+      cate: {},
     };
   },
   created() {
@@ -40,11 +57,31 @@ export default {
        **      }
        **
        */
-      for (let h in this.cateMap) {
-        $(`#${this.cateList} ${h}`).each((index, element) => {
-          this.cateMap[h].push($(element).text());
-        });
+      this.cateMap = $(`#${this.cateList} div.table-of-contents`).html();
+      function formCate(node) {
+        var items = [];
+        node
+          .children("ul")
+          .children("li")
+          .each((index, element) => {
+            var obj = {
+              href: $(element).children("a").attr("href"),
+              title: $(element).children("a").text(),
+              child: formCate($(element)),
+              active: false,
+            };
+            items.push(obj);
+          });
+        return items;
       }
+      this.cate = formCate($(`#${this.cateList} div.table-of-contents`));
+      // $(`#${this.cateList} div.table-of-contents`).each((index, element) => {this.cate[$(element).text()]={href:}})
+      // $(`#${this.cateList} div.table-of-contents`).remove();
+      // for (let h in this.cateMap) {
+      //   $(`#${this.cateList} ${h}`).each((index, element) => {
+      //     this.cateMap[h].push($(element).text());
+      //   });
+      // }
     },
   },
   methods: {
@@ -56,4 +93,18 @@ export default {
 </script>
 
 <style>
+#cate {
+  width: 20%;
+  position: fixed;
+}
+a {
+  color: black !important;
+  text-decoration: none;
+}
+a:hover {
+  color: #1976d2 !important;
+}
+#cate .v-icon {
+  font-size: 10px;
+}
 </style>

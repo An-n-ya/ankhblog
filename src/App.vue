@@ -47,11 +47,11 @@ export default {
     },
     expand: false,
     dict: {
-      主页: "home",
-      资料: "resources",
-      UI设计: "ui",
-      画廊: "gallery",
-      关于: "about",
+      主页: "/home",
+      资料: "/resources",
+      UI设计: "/ui",
+      画廊: "/gallery",
+      关于: "/about",
     },
   }),
   methods: {

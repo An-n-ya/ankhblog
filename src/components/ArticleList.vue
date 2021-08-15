@@ -132,8 +132,16 @@ img {
 code {
   background-color: rgba(0, 0, 0, 0) !important;
 }
+/* 设定anchor的样式 */
 .header-anchor {
   color: black !important;
+  text-decoration: none !important;
+}
+.table-of-contents {
+  display: none !important;
+}
+.header-anchor:hover {
+  color: #1976d2 !important;
 }
 .line-numbers-wrapper {
   float: left;
