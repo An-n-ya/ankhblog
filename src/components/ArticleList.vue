@@ -6,17 +6,31 @@
     <template class="articleList" v-if="this.$route.path === '/'">
       <template v-for="(item, i) in articleList">
         <transition appear :key="i" name="scale">
-          <v-hover v-slot="{ hover }" :key="i">
+          <v-hover v-slot="{ hover }" :key="'hover' + i">
             <v-card
               v-ripple="false"
-              :key="i"
+              :key="'card' + i"
               :elevation="hover ? 3 : 0"
-              :id="`aticlePost${i}`"
+              :id="`articlePost${i}`"
               class="rounded-lg pa-4 mb-4"
               :to="routeTo(item.attributes, i)"
               flat
               active-class="activeCard"
             >
+              <div id="articleInfo" class="">
+                <p class="articleDate" style="display: inline">
+                  <v-icon small color="primary" class="my-2 mx-auto"
+                    >far fa-calendar-alt</v-icon
+                  >
+                  {{ getDate(item.attributes.addTime) }}
+                </p>
+                <p class="articleReadTime" style="display: inline">
+                  <v-icon small color="primary" class="my-2 mx-auto"
+                    >far fa-clock</v-icon
+                  >
+                  {{ getReadTime(item.html.length) }}
+                </p>
+              </div>
               <div v-html="readMore(item.html)"></div>
             </v-card>
           </v-hover>
@@ -32,6 +46,20 @@
           :id="`articlePost${currentArticleId}`"
           flat
         >
+          <div id="articleInfo" class="">
+            <p class="articleDate" style="display: inline">
+              <v-icon small color="primary" class="my-2 mx-auto"
+                >far fa-calendar-alt</v-icon
+              >
+              {{ getDate(articleList[currentArticleId].attributes.addTime) }}
+            </p>
+            <p class="articleReadTime" style="display: inline">
+              <v-icon small color="primary" class="my-2 mx-auto"
+                >far fa-clock</v-icon
+              >
+              {{ getReadTime(articleList[currentArticleId].html.length) }}
+            </p>
+          </div>
           <div v-html="articleList[currentArticleId].html"></div>
           <template
             v-for="(tag, index) in articleList[currentArticleId].attributes
@@ -61,7 +89,6 @@ export default {
     return {
       articleList: [],
       mdList: [],
-
       currentArticleId: "", //选中文章的id
     };
   },
@@ -71,8 +98,26 @@ export default {
   mounted() {
     this.refineDOM();
   },
+  updated() {},
   computed: {},
+  watch: {},
   methods: {
+    getDate(timeStamp) {
+      let date = new Date(timeStamp);
+      let year = date.getFullYear();
+      let month = date.getMonth() + 1;
+      let day = date.getDate();
+      const res =
+        year +
+        "-" +
+        (month >= 10 ? month : "0" + month) +
+        "-" +
+        (day >= 10 ? day : "0" + day);
+      return "发表于 " + res;
+    },
+    getReadTime(length) {
+      return Math.ceil(length / 300) + "分钟读完（" + length + "个字)";
+    },
     animateClass(i) {
       if (this.currentArticleId === "") {
         return "animate__animated animate__bounce";

@@ -6,6 +6,7 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 import 'animate.css'
 import "jquery";
+
 Vue.config.productionTip = false
 
 new Vue({
