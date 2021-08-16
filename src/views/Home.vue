@@ -13,6 +13,7 @@
 
       <v-col md="9" sm="6" class="pr-0 pt-4 pl-2">
         <ArticleList></ArticleList>
+        <Pagination v-if="this.$route.path === '/'"></Pagination>
       </v-col>
     </v-row>
   </v-container>
@@ -22,6 +23,7 @@
 import Author from "../components/Author.vue";
 import ArticleList from "../components/ArticleList.vue";
 import Catalog from "../components/Cate.vue";
+import Pagination from "../components/Pagination.vue";
 export default {
   name: "Home",
 
@@ -29,6 +31,7 @@ export default {
     Author,
     ArticleList,
     Catalog,
+    Pagination,
   },
   watch: {
     $route(to, from) {

@@ -4,7 +4,12 @@
     <!-- enter-active-class="animate__animated animate__fadeIn" -->
     <!-- :duration="{ enter: (i + 1) * 500, leave: (i + 2) * 500 }" -->
     <template class="articleList" v-if="this.$route.path === '/'">
-      <template v-for="(item, i) in articleList">
+      <template
+        v-for="(item, i) in articleList.slice(
+          this.$store.state.pagi.numPerPage * (this.$store.state.pagi.page - 1),
+          this.$store.state.pagi.numPerPage * this.$store.state.pagi.page
+        )"
+      >
         <transition appear :key="i" name="scale">
           <v-hover v-slot="{ hover }" :key="'hover' + i">
             <v-card
@@ -28,7 +33,11 @@
                   <v-icon small color="primary" class="my-2 mx-auto"
                     >far fa-clock</v-icon
                   >
-                  {{ getReadTime(item.html.length) }}
+                  {{
+                    getReadTime(
+                      item.html.match(/[\u4e00-\u9fff\uf900-\ufaff]/g).length
+                    )
+                  }}
                 </p>
               </div>
               <div v-html="readMore(item.html)"></div>
@@ -57,7 +66,13 @@
               <v-icon small color="primary" class="my-2 mx-auto"
                 >far fa-clock</v-icon
               >
-              {{ getReadTime(articleList[currentArticleId].html.length) }}
+              {{
+                getReadTime(
+                  articleList[currentArticleId].html.match(
+                    /[\u4e00-\u9fff\uf900-\ufaff]/g
+                  ).length
+                )
+              }}
             </p>
           </div>
           <div v-html="articleList[currentArticleId].html"></div>
@@ -94,6 +109,7 @@ export default {
   },
   created() {
     this.getArticle();
+    this.$store.commit("setPagiLength", this.articleList.length);
   },
   mounted() {
     this.refineDOM();
@@ -201,7 +217,7 @@ code {
 }
 pre {
   float: right;
-  width: 90%;
+  width: 95%;
 }
 .line-numbers-mode {
   overflow: hidden;
