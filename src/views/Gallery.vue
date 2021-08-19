@@ -5,7 +5,7 @@
         <template v-for="i in imgList.length">
           <transition appear name="scale" :key="'trans' + i">
             <v-card class="rounded-lg ma-2" flat :key="'card' + i">
-              <v-img :src="imgList[i]" max-width="20rem"></v-img> </v-card
+              <v-img :src="imgList[i]" width="15rem"></v-img> </v-card
           ></transition> </template
       ></v-col>
     </v-row>
@@ -44,7 +44,7 @@ export default {
 <style scoped>
 @import url(../utils/animate/animate.css);
 .col {
-  height: 150rem;
+  height: 80rem;
 }
 .v-card {
 }
