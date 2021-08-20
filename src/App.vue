@@ -67,4 +67,8 @@ export default {
 
 <style>
 @import url("./utils/prism.css");
+/* global CSS */
+.v-dialog {
+  position: relative;
+}
 </style>
