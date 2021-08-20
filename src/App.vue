@@ -8,7 +8,9 @@
       elevate-on-scroll
     >
       <v-container class="py-0 fill-height">
-        <v-avatar class="mr-10" color="grey darken-1" size="32"></v-avatar>
+        <v-avatar class="mr-10" color="grey darken-1" size="32">
+          <img :src="getAvatar('ankh04@icloud.com')" />
+        </v-avatar>
 
         <v-btn v-for="link in links" :key="link" text @click="routeTo(link)">
           {{ link }}
@@ -37,6 +39,7 @@
 </template>
 <script>
 import { mdiGithub } from "@mdi/js";
+import md5 from "md5";
 export default {
   name: "App",
 
@@ -60,6 +63,18 @@ export default {
     },
     routeTo: function (link) {
       this.$router.push(this.dict[link]);
+    },
+    getAvatar: function (email) {
+      // Trim leading and trailing whitespace from
+      // an email address and force all characters
+      // to lower case
+      const address = String(email).trim().toLowerCase();
+
+      // Create an MD5 hash of the final string
+      const hash = md5(address);
+
+      // Grab the actual image URL
+      return `https://www.gravatar.com/avatar/${hash}`;
     },
   },
 };

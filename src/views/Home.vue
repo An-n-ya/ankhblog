@@ -47,6 +47,7 @@ export default {
         name: "Ankh",
         avator: "",
         address: "Shanghai, China",
+        email: "ankh04@icloud.com",
         url: [
           ["github", "https://github.com/ankh04"],
           ["weibo", "https://weibo.com/u/7214011630"],

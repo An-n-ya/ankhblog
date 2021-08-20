@@ -2,11 +2,7 @@
   <v-card class="rounded-lg" flat>
     <v-container>
       <v-row>
-        <v-col align="center">
-          <v-avatar color="indigo" size="100">
-            <v-icon dark large>fas fa-user-circle</v-icon>
-          </v-avatar></v-col
-        >
+        <v-col align="center"> <img src="../assets/avatar2.png" /></v-col>
       </v-row>
       <v-row class="authorName">
         <v-col class="my-0 py-0" align="center"

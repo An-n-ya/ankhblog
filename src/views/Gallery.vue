@@ -27,7 +27,7 @@
                   <v-img
                     v-bind="attrs"
                     v-on="on"
-                    :src="imgList[i]"
+                    :src="imgList[i] + '?imageMogr2/quality/60'"
                     width="15rem"
                     class="ma-auto gallery-img"
                   >
