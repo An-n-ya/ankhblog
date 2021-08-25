@@ -62,6 +62,7 @@
 </template>
 
 <script>
+var ExifImage = require("exif").ExifImage;
 export default {
   data() {
     return {
@@ -87,7 +88,16 @@ export default {
       ],
       // 控制图片的懒加载
       isActive: false,
+      imgInfo: {},
     };
+  },
+  methods: {
+    getImgInfo() {
+      new ExifImage({ image: "myImage.jpg" }, function (error, exifData) {
+        if (error) console.log("Error: " + error.message);
+        else this.imgInfo = exifData;
+      });
+    },
   },
 };
 </script>

@@ -19,7 +19,19 @@
         <v-spacer></v-spacer>
 
         <v-responsive class="mx-2" max-width="200" v-show="expand">
-          <v-text-field class="" flat hide-details solo-inverted dense>
+          <v-text-field
+            class=""
+            flat
+            name="q"
+            type="search"
+            hide-details
+            solo
+            outlined
+            dense
+            :focus="startAutocomplete()"
+            :keydown="startAutocomplete()"
+            placeholder="站内搜索"
+          >
           </v-text-field>
         </v-responsive>
 
@@ -32,7 +44,7 @@
       </v-container>
     </v-app-bar>
 
-    <v-main class="grey lighten-3">
+    <v-main style="background-color: #faeee7">
       <router-view></router-view>
     </v-main>
   </v-app>
@@ -76,12 +88,19 @@ export default {
       // Grab the actual image URL
       return `https://www.gravatar.com/avatar/${hash}`;
     },
+    startAutocomplete() {
+      const script = document.createElement("script");
+      script.src =
+        "https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/static/js/autocomplete.js";
+      document.head.appendChild(script);
+    },
   },
 };
 </script>
 
 <style>
 @import url("./utils/prism.css");
+@import url("./utils/global.css");
 /* global CSS */
 .v-dialog {
   position: relative;

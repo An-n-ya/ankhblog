@@ -1,0 +1,27 @@
+/* body{
+      background-color:  #faeee7 !important
+      }
+button{
+    color: #ff8ba7 !important
+}
+i{
+    color: #ff8ba7 !important;
+    caret-color: #ff8ba7 !important;
+} */
+@font-face {
+    font-family: shanghei;
+    src: url(../assets/font/MFShangHei_Noncommercial-Regular.ttf);
+}
+p, ul, li{
+    color: #594a4e;
+}
+h1, h2, h3, h4, h5, h6{
+    color: #33272a;
+}
+.v-card{
+    background-color: #fffffe !important;
+}
+p, ul, li{
+    font-family: "shanghei";
+    letter-spacing: .1em
+}

@@ -69,6 +69,7 @@ export default {
         // $(".pl-0.pt-4.pr-2.col.col-3").remove();/会影响主页面布局
         // $(".pr-0.pt-4.pl-2.col-sm-6.col-md-9.col").addClass("mx-auto");//这一行会影响主页面布局
         $("#cate").css("display", "none");
+        // $("#sideBar").css("display", "none");
       }
       // this.cate = this.unique(this.cate);
       // $(`#${this.cateList} div.table-of-contents`).remove();
@@ -97,7 +98,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #cate {
   width: 20%;
   position: fixed;

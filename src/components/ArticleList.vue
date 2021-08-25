@@ -17,6 +17,7 @@
               :key="'card' + i"
               :elevation="hover ? 3 : 0"
               :id="`articlePost${i}`"
+              :class="hover ? 'secondary' : ''"
               class="rounded-lg pa-4 mb-4"
               :to="routeTo(item.attributes, i)"
               flat
@@ -82,9 +83,9 @@
           >
             <v-chip
               class="ma-2"
-              color="primary"
+              color="secondary"
               label
-              text-color="white"
+              text-color="#33272a"
               :key="index"
             >
               <v-icon left> fas fa-tag </v-icon>
@@ -141,6 +142,9 @@ export default {
       return `animate__animated animate__bounce animate__delay-${i * 0.5}s`;
     },
     routeTo(attr, index) {
+      index =
+        this.$store.state.pagi.numPerPage * (this.$store.state.pagi.page - 1) +
+        index;
       this.$store.commit("setArticle", index);
       this.currentArticleId = index;
       return `/post/${attr.title}`;
@@ -187,7 +191,6 @@ h1 {
   margin-bottom: 10px;
 }
 img {
-  width: 100%;
   border-radius: 8px;
 }
 code {
@@ -202,7 +205,7 @@ code {
   display: none !important;
 }
 .header-anchor:hover {
-  color: #1976d2 !important;
+  color: primary !important;
 }
 .line-numbers-wrapper {
   float: left;
@@ -223,7 +226,7 @@ pre {
   overflow: hidden;
 }
 .v-application p a {
-  color: #4051b5;
+  color: primary;
   text-decoration: none;
 }
 /* 链接激活时卡片的样式 */

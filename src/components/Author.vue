@@ -1,8 +1,9 @@
 <template>
   <v-card class="rounded-lg" flat>
     <v-container>
-      <v-row>
-        <v-col align="center"> <img src="../assets/avatar2.png" /></v-col>
+      <v-row class="avatarBlock">
+        <div id="circle"></div>
+        <v-col align="center" id="avatar"> </v-col>
       </v-row>
       <v-row class="authorName">
         <v-col class="my-0 py-0" align="center"
@@ -19,12 +20,12 @@
       </v-row>
       <v-row class="follow mx-4 mb-1">
         <v-btn
-          class="mx-auto px-12"
+          class="mx-auto px-12 rounded-lg"
           max-width="20rem"
           min-width="3rem"
-          color="indigo rounded-lg"
+          color="primary"
           @click="navTo(authorData.url[0][1])"
-          ><p class="my-auto indigo--text text--lighten-5">关注我</p></v-btn
+          ><p class="my-auto" style="color: #33272a">关注我</p></v-btn
         >
       </v-row>
       <v-row class="icon mx-4 mb-1">
@@ -57,5 +58,25 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+#avatar {
+  position: absolute;
+  width: 100%;
+  height: 60rem;
+  background-image: url(../assets/avatar.png);
+  background-size: contain;
+  mask: url(../assets/mask.png);
+  mask-size: contain;
+  /* -webkit-mask: url(../assets/mask.png); */
+}
+#circle {
+  width: 100%;
+  height: 60rem;
+  background-color: bisque;
+  mask: url(../assets/circle.png) no-repeat;
+  mask-size: contain;
+}
+.avatarBlock {
+  height: 37rem;
+}
 </style>
