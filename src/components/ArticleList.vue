@@ -191,6 +191,7 @@ h1 {
   margin-bottom: 10px;
 }
 img {
+  width: 100%;
   border-radius: 8px;
 }
 code {
