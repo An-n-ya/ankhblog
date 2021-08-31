@@ -139,9 +139,9 @@ for (let i = 0; i < arr.length; i++) {
 
 最后一种方法便是这篇文章的重点：模板引擎方法。
 
-有人或许会想模板字符串的方法已经很优雅了，为什么还需要模板引擎呢。事实上，如果是单层循环结构，模板字符串能处理的很好，但在实际应用中，多层循环是很常见的，这时候模板字符串也好数组join法也好，便都不是很好用了。于是，便出现了mustache这一模板引擎的编程思路的出现。这个思路对于前端界的影响是巨大的，后来许多好用的模块都借鉴了mustache的思想。
+有人或许会想模板字符串的方法已经很优雅了，为什么还需要模板引擎呢。事实上，如果是单层循环结构，模板字符串能处理的很好，但在实际应用中，多层循环是很常见的，这时候模板字符串也好数组join法也好，便都不是很好用了。于是，便出现了 mustache 这一模板引擎的编程思路的出现。这个思路对于前端界的影响是巨大的，后来许多好用的模块都借鉴了 mustache 的思想。
 
-mustache最早是应用在Ruby语言下的，大约在2014年，出现了JavaScript下的mustache实现，mustache.js的源代码放在了[这里](https://github.com/janl/mustache.js)
+mustache 最早是应用在Ruby语言下的，大约在2014年，出现了JavaScript下的 mustache 实现，mustache.js 的源代码放在了[这里](https://github.com/janl/mustache.js)
 
 mustache原意为胡子，就是指mustache常用的符号`{`垂直放置起来，就很像胡子
 
@@ -151,7 +151,7 @@ mustache原意为胡子，就是指mustache常用的符号`{`垂直放置起来�
 
 ### mustache基本使用
 
-mustache的**模板语法**非常简单，对于上述案例，它的模板语法如下：
+mustache 的**模板语法**非常简单，对于上述案例，它的模板语法如下：
 
 ```html
 <ul>
@@ -212,7 +212,7 @@ var templateStr2 = `
 
 ![result](https://picture-bed-1301848969.cos.ap-shanghai.myqcloud.com/144201630286787_.pic.jpg)
 
-还有个疑问，我们在写模板语法的时候还是用到了模板字符串，要知道mustache.js是2014年发布的，那个时候还没有ES6，如果没有ES6该怎么写模板语法呢，这个问题的解决方法很简单，就是在`<script>` 标签里边写模板语法即可，同时将该标签的type声明为`text/template`，或者是任何其他你喜欢的名字，只要不是`text/javascript`即可，这样这个script标签浏览器便不会认识，到时候也不会被渲染出来，需要使用模板语法的时候，通过选择器抓取该标签的innerHTML即可。
+还有个疑问，我们在写模板语法的时候还是用到了模板字符串，要知道 mustache.js 是2014年发布的，那个时候还没有ES6，如果没有ES6该怎么写模板语法呢，这个问题的解决方法很简单，就是在`<script>` 标签里边写模板语法即可，同时将该标签的type声明为`text/template`，或者是任何其他你喜欢的名字，只要不是`text/javascript`即可，这样这个script标签浏览器便不会认识，到时候也不会被渲染出来，需要使用模板语法的时候，通过选择器抓取该标签的innerHTML即可。
 
 ## mustache实现原理
 
@@ -254,7 +254,7 @@ var result = render(templateStr, data);
 
 但是该方法只能处理简单的数据和模板语法，处理不了循环。
 
-mustache的思路是先将模板语法渲染为tokens结构，再与数据结合，最终渲染为DOM字符串：
+mustache 的思路是先将模板语法渲染为 tokens 结构，再与数据结合，最终渲染为DOM字符串：
 
 ![mustache2](https://picture-bed-1301848969.cos.ap-shanghai.myqcloud.com/mustache2.png)
 
@@ -262,9 +262,9 @@ Tokens结构被很多其他模块借鉴，比如[markdown-it](https://github.com
 
 ### Scanner类
 
-为了扫描tokens里的text元素、name元素、#元素，我们引入Scanner类。
+为了扫描 tokens 里的 text 元素、name 元素、# 元素，我们引入 Scanner 类。
 
-Scanner类包含两个三个属性，`templateStr`：当前模板语法，`pos`：当前指针，`tail`：余下的模板语法。Scanner类还包含两个方法，一个用来扫描`beginTag`和`endTag`以外的语句，一个用来跳过`beginTag`和`endTag`语句，在mustache中，常用的Tag便是`{{`和`}}`。具体代码如下
+Scanner 类包含两个三个属性，`templateStr`：当前模板语法，`pos`：当前指针，`tail`：余下的模板语法。Scanner类还包含两个方法，一个用来扫描`beginTag`和`endTag`以外的语句，一个用来跳过`beginTag`和`endTag`语句，在mustache中，常用的Tag便是`{{`和`}}`。具体代码如下
 
 ```js
 export default class Scanner {
@@ -341,7 +341,7 @@ export default class Scanner {
     }
 ```
 
-现在的tokens是没有嵌套结构的，我们可以实现一个`nestedTokens`函数来做转换，这里的代码比较可以说是mustache中最精巧的一部分了：通过栈结构对嵌套部分进行存储，再通过`collect`指针引导压栈位置。
+现在的 tokens 是没有嵌套结构的，我们可以实现一个`nestedTokens`函数来做转换，这里的代码比较可以说是 mustache 中最精巧的一部分了：通过栈结构对嵌套部分进行存储，再通过`collect`指针引导压栈位置。
 
 ```js
 export default function nextTokens(tokens) {
@@ -376,7 +376,7 @@ export default function nextTokens(tokens) {
 }
 ```
 
-最后一步是把数据和Tokens结合起来，最后渲染成DOM字符串，在遇到text类型时，直接加上该token的内容，在遇到name类型时，则需要访问对应的数据`data`，在遇到`#`类型时，则需要进行循环，并嵌套渲染DOM字符串。
+最后一步是把数据和 Tokens 结合起来，最后渲染成DOM字符串，在遇到 text 类型时，直接加上该 token 的内容，在遇到 name 类型时，则需要访问对应的数据`data`，在遇到`#`类型时，则需要进行循环，并嵌套渲染DOM字符串。
 
 ```js
 export default function parseDOM(tokens, data) {
@@ -397,4 +397,4 @@ export default function parseDOM(tokens, data) {
 }
 ```
 
-至此，mustache的基本架构便完成了，mustache还有许多其他好玩的特性，这部分的实现可以参考[官方文档](http://mustache.github.io/)和[代码](https://github.com/janl/mustache.js)。本文提到的所有代码都托管在[这里](https://gitee.com/ankh04/vue3_learn/tree/main/mustache)
+至此，mustache 的基本架构便完成了，mustache 还有许多其他好玩的特性，这部分的实现可以参考[官方文档](http://mustache.github.io/)和[代码](https://github.com/janl/mustache.js)。本文提到的所有代码都托管在[这里](https://gitee.com/ankh04/vue3_learn/tree/main/mustache)
