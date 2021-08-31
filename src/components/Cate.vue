@@ -49,6 +49,7 @@ export default {
     cateList: function () {
       function formCate(node) {
         var items = [];
+        var map = {};
         node
           .children("ul")
           .children("li")
@@ -59,12 +60,15 @@ export default {
               child: formCate($(element)),
               active: false,
             };
-            items.push(obj);
+            if (!map[obj.title]) {
+              map[obj.title] = index;
+              items.push(obj);
+            }
           });
         return items;
       }
-      this.cate = formCate($(`#${this.cateList} div.table-of-contents`));
-      this.cate = [...new Set(this.cate)]; //利用set的特性去重
+      const cateStatic = formCate($(`#${this.cateList} div.table-of-contents`));
+      this.cate = cateStatic;
       if (Object.keys(this.cate).length == 0) {
         // $(".pl-0.pt-4.pr-2.col.col-3").remove();/会影响主页面布局
         // $(".pr-0.pt-4.pl-2.col-sm-6.col-md-9.col").addClass("mx-auto");//这一行会影响主页面布局
