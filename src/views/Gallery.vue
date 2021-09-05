@@ -85,6 +85,9 @@ export default {
         "https://picture-bed-1301848969.cos.ap-shanghai.myqcloud.com/%E5%86%B0%E6%B7%87%E6%B7%8B%F0%9F%8D%A6.jpg",
         "https://picture-bed-1301848969.cos.ap-shanghai.myqcloud.com/%F0%9F%91%A7.jpg",
         "https://picture-bed-1301848969.cos.ap-shanghai.myqcloud.com/mario_set.gif",
+        "https://picture-bed-1301848969.cos.ap-shanghai.myqcloud.com/sketch1.jpg",
+        "https://picture-bed-1301848969.cos.ap-shanghai.myqcloud.com/%E6%9D%A8%E6%A0%91.jpg",
+        "https://picture-bed-1301848969.cos.ap-shanghai.myqcloud.com/%E6%9D%BE%E6%A0%91.jpg",
       ],
       // 控制图片的懒加载
       isActive: false,
@@ -105,7 +108,7 @@ export default {
 <style scoped>
 @import url(../utils/animate/animate.css);
 .col {
-  height: 80rem;
+  height: 100rem;
 }
 .v-card {
 }
